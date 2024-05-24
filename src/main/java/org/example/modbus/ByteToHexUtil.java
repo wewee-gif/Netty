@@ -24,7 +24,7 @@ public class ByteToHexUtil {
     int datasize=2;
 
     public static String toHexStringAtLeastTwoDigits(int number) {
-        String hex = Integer.toHexString(number);
+        String hex = Integer.toHexString(number&0xff);
         return hex.length() < 2 ? "0" + hex : hex;
     }
 
@@ -63,7 +63,7 @@ public class ByteToHexUtil {
                         a=0;
                     System.out.println("地址：" + (adder + i) + "            " + "测值：" +a);
                 }
-            } else if (code.equals(02)) {
+            } else if (code.equals("02")) {
                 System.out.println("接收功能码类型：读输入线圈");
                 int a;
                 for (int i = 0; i < PiontNum; i++) {
@@ -85,8 +85,17 @@ public class ByteToHexUtil {
                 for (int i = 0; i < PiontNum; i++) {
                     System.out.println("地址：" + (adder + i) + "            " + "测值：" + byteBuf.getShort(9 + i * 2));
                 }
+            } else if (code.equals("05")){
+                System.out.println("接收功能码类型：写单个输出线圈");
+            } else if (code.equals("0f")) {
+                System.out.println("接收功能码类型：写多个输出线圈");
+            } else if (code.equals("06")) {
+                System.out.println("接收功能码类型：写单个输出寄存器");
+            } else if (code.equals("10")) {
+                System.out.println("接收功能码类型：写多个输出寄存器");
             } else {
                 //System.out.println("其他或错误功能码");
+                System.out.println(code);
                 throw new MessageLengthException("其他或错误功能码");
             }
         }else

@@ -101,7 +101,7 @@ public class ModbusClientHandler extends ChannelInboundHandlerAdapter {
                     "0x03：读保持寄存器\n" +
                     "0x06：写单个保持寄存器\n" +
                     "0x10：写多个保持寄存器");
-            System.out.println("输入格式：[1/2](选择发送次数，1单次，2循环),[功能码],[起始地址]，[查询测点个数]");
+            System.out.println("输入格式：[1/2](选择发送次数，1单次，2循环),[功能码],[起始地址],[查询/写入测点个数],[写的数据（/隔开）]");
         }
         count=1;
     }
