@@ -45,7 +45,8 @@ public class MainWork {
 
     private static LinkedList<Short> StringToShort(String s){
         LinkedList<Short> num = new LinkedList<Short>();
-        ValueString=s.trim().substring(1,s.length()-1).split("/");
+        //ValueString=s.trim().substring(1,s.length()-1).split("/");
+        ValueString=s.trim().split("/");
         for (int i = 0; i < ValueString.length; i++) {
             num.add(Short.parseShort(ValueString[i]));
         }
@@ -57,7 +58,10 @@ public class MainWork {
         message.setCodeFunc(code);
         message.setPointNum(Short.parseShort(s[3]));
         message.setStartAdder(Short.parseShort(s[2]));
-        message.setValue(StringToShort(s[4]));
+        if(s.length>4){
+            //System.out.println(s[4]);
+            message.setValue(StringToShort(s[4]));
+        }
         return message;
 
     }
